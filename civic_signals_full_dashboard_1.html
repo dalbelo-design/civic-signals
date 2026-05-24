@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Civic Signals — Contra Costa County</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,700;1,400;1,500&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{--bg:#07111f;--bg2:#0b1728;--p:rgba(255,255,255,.04);--ph:rgba(255,255,255,.07);--l:rgba(255,255,255,.09);--lh:rgba(255,255,255,.18);--t:#eef4ff;--m:#a9b7d6;--d:#6c7a99;--c:#63d7f2;--v:#8b5cf6;--a:#f59e0b;--r:#ef4444;--g:#22c55e;--pk:#f472b6;--df:'Fraunces',Georgia,serif;--bd:'Inter Tight',system-ui,sans-serif;--mn:'JetBrains Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:var(--bd);color:var(--t);background:radial-gradient(ellipse at top left,rgba(99,215,242,.11),transparent 42%),radial-gradient(ellipse at top right,rgba(139,92,246,.11),transparent 42%),linear-gradient(180deg,var(--bg),var(--bg2));background-attachment:fixed;min-height:100vh;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+.tb{position:sticky;top:0;z-index:50;background:rgba(7,17,31,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--l)}
+.tbi{max-width:1340px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.lg{display:flex;align-items:center;gap:10px;font-family:var(--df);font-weight:700;font-size:20px;letter-spacing:-.02em}
+.lgm{width:28px;height:28px;border-radius:8px;background:conic-gradient(from 180deg,var(--c),var(--v),var(--pk),var(--c));display:grid;place-items:center;box-shadow:0 0 22px rgba(99,215,242,.3)}
+.lgm::after{content:'';width:10px;height:10px;border-radius:50%;background:var(--bg)}
+.lg em{font-style:italic;font-weight:500;color:var(--m)}
+nav.pr{display:flex;gap:2px;flex-wrap:wrap}
+nav.pr button{color:var(--m);padding:8px 12px;border-radius:10px;display:flex;align-items:center;gap:7px;transition:.15s;font-size:13px;font-weight:500}
+nav.pr button:hover{color:var(--t);background:var(--p)}
+nav.pr button.on{color:var(--t);background:var(--ph)}
+nav.pr .dt{width:6px;height:6px;border-radius:50%;background:var(--d)}
+nav.pr .on .dt{background:var(--c);box-shadow:0 0 8px var(--c)}
+.tr{margin-left:auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.pl{display:flex;align-items:center;gap:9px;font-family:var(--mn);font-size:11px;color:var(--m);padding:6px 11px;border:1px solid var(--l);border-radius:999px}
+.pl .lv{width:7px;height:7px;border-radius:50%;background:var(--g);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.7)}70%{box-shadow:0 0 0 8px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.rs{display:flex;align-items:center;gap:10px;padding:4px 4px 4px 12px;background:var(--p);border:1px solid var(--l);border-radius:999px}
+.rs .rl{font-family:var(--mn);font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--d)}
+.rp{display:flex;gap:2px}
+.rp button{padding:6px 12px;border-radius:999px;font-size:12px;font-weight:500;color:var(--m);display:flex;align-items:center;gap:6px;transition:.15s}
+.rp button:hover{color:var(--t)}
+.rp button.on{color:var(--bg);font-weight:600;background:linear-gradient(135deg,var(--c),#89e4f5)}
+.ap{max-width:1340px;margin:0 auto;padding:20px 22px 60px}
+.vw{display:none;animation:fd .35s ease}
+.vw.on{display:block}
+@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.vh{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:22px;flex-wrap:wrap}
+.vh h1{font-family:var(--df);font-weight:500;font-style:italic;font-size:38px;line-height:1;letter-spacing:-.03em}
+.vh h1 span{font-style:normal;font-weight:700}
+.vh p{color:var(--m);margin-top:8px;max-width:640px}
+.rn{font-family:var(--mn);font-size:11px;color:var(--d);padding:6px 11px;border:1px dashed var(--l);border-radius:8px;display:flex;align-items:center;gap:7px}
+.rn strong{color:var(--c);font-weight:600}
+.pn{background:var(--p);border:1px solid var(--l);border-radius:18px;padding:20px;backdrop-filter:blur(6px)}
+.hg{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;margin-bottom:18px}
+.hm{padding:28px 30px;position:relative;overflow:hidden}
+.hm::after{content:'';position:absolute;right:-80px;bottom:-120px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(99,215,242,.16),transparent 65%);pointer-events:none}
+.eb{font-family:var(--mn);font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--c);margin-bottom:14px}
+.hm h2{font-family:var(--df);font-weight:500;font-size:36px;line-height:1.05;letter-spacing:-.03em;margin-bottom:10px}
+.hm h2 em{font-style:italic;background:linear-gradient(120deg,var(--c),#aedffc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hm p{color:var(--m);font-size:15px;max-width:560px}
+.sc{display:flex;flex-direction:column;gap:12px}
+.st{background:var(--p);border:1px solid var(--l);border-radius:16px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between}
+.st .lb{font-size:12px;color:var(--m)}
+.st .vl2{font-family:var(--df);font-weight:700;font-size:32px;line-height:1;letter-spacing:-.02em}
+.st .tr2{font-family:var(--mn);font-size:11px;color:var(--g);margin-top:4px}
+.st .tr2.warn{color:var(--r)}
+.fw{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}
+.co{padding:18px;margin-bottom:14px;background:linear-gradient(135deg,rgba(99,215,242,.08),rgba(139,92,246,.08));border:1px solid var(--l);border-radius:16px}
+.cr{display:flex;align-items:center;gap:10px}
+.ca{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--c),var(--v));display:grid;place-items:center;font-weight:600;color:var(--bg);flex-shrink:0}
+.ci{flex:1;background:rgba(7,17,31,.5);border:1px solid var(--l);border-radius:12px;padding:10px 14px;color:var(--m);cursor:text;transition:.15s}
+.ci:hover{color:var(--t);border-color:var(--lh)}
+.cx{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;padding-left:48px}
+.ch{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:999px;background:var(--ph);border:1px solid var(--l);font-size:11px;color:var(--m);transition:.15s}
+.ch:hover{color:var(--t);border-color:var(--lh)}
+.ch.sd{background:linear-gradient(135deg,var(--c),#89e4f5);color:var(--bg);font-weight:600;border-color:transparent;margin-left:auto}
+.ss{display:flex;flex-direction:column;gap:12px}
+.sg{padding:16px 18px;background:var(--p);border:1px solid var(--l);border-radius:16px;transition:.15s}
+.sg:hover{border-color:var(--lh);transform:translateY(-1px)}
+.sg.ft{border-color:rgba(99,215,242,.3);background:linear-gradient(135deg,rgba(99,215,242,.05),rgba(139,92,246,.05))}
+.sh{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.av{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:600;color:var(--bg);flex-shrink:0}
+.a1{background:linear-gradient(135deg,#f472b6,#f59e0b)}.a2{background:linear-gradient(135deg,#63d7f2,#8b5cf6)}.a3{background:linear-gradient(135deg,#22c55e,#63d7f2)}.a4{background:linear-gradient(135deg,#f59e0b,#ef4444)}.a5{background:linear-gradient(135deg,#8b5cf6,#f472b6)}.a6{background:linear-gradient(135deg,#63d7f2,#22c55e)}
+.sm{flex:1;min-width:0}
+.sm .wh{font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px}
+.sm .hn{color:var(--d);font-weight:400;font-size:12px}
+.sm .wr{font-family:var(--mn);font-size:11px;color:var(--d)}
+.tg{font-family:var(--mn);font-size:10px;padding:3px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.06em}
+.tg-h{background:rgba(244,114,182,.12);color:#fbb6d7}.tg-f{background:rgba(34,197,94,.12);color:#a6f2bb}.tg-cl{background:rgba(239,68,68,.12);color:#fca5a5}.tg-t{background:rgba(99,215,242,.12);color:#aaeefa}.tg-s{background:rgba(245,158,11,.12);color:#fbd38d}.tg-m{background:rgba(139,92,246,.12);color:#cfbfff}
+.sb{font-size:14px;color:#dde6fb;line-height:1.6;margin-bottom:12px}
+.sa{display:flex;align-items:center;gap:4px;padding-top:10px;border-top:1px dashed var(--l);flex-wrap:wrap}
+.ab{display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:8px;color:var(--m);font-size:12px;transition:.15s}
+.ab:hover{color:var(--t);background:var(--ph)}
+.ab.on{color:var(--c)}
+.ab .cn{font-family:var(--mn);font-size:11px}
+.sy{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--mn);font-size:10px;color:var(--d);text-transform:uppercase;letter-spacing:.08em}
+.sd2{width:6px;height:6px;border-radius:50%;background:var(--c);box-shadow:0 0 6px var(--c)}
+.wd{display:flex;flex-direction:column;gap:14px}
+.wg{padding:18px;background:var(--p);border:1px solid var(--l);border-radius:16px}
+.wg h4{font-family:var(--df);font-weight:700;font-size:15px;margin-bottom:12px;letter-spacing:-.01em}
+.wg h4 em{color:var(--c);font-style:italic;font-weight:500}
+.cv{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px dashed var(--l)}
+.cv:last-child{border:0}
+.cs{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-family:var(--mn);font-size:10px;font-weight:600;flex-shrink:0;text-align:center;line-height:1.2}
+.sH{background:rgba(239,68,68,.14);color:#fca5a5}.sM{background:rgba(245,158,11,.14);color:#fbd38d}.sR{background:rgba(99,215,242,.14);color:#aaeefa}
+.cb .ti{font-size:13px;font-weight:500}
+.cb .sb2{font-family:var(--mn);font-size:11px;color:var(--d);margin-top:2px}
+.pe{display:flex;align-items:center;gap:10px;padding:8px;border-radius:10px;transition:.15s}
+.pe:hover{background:var(--ph)}
+.pi{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;font-size:14px;flex-shrink:0}
+.pe.rz .pi{background:rgba(99,215,242,.14)}.pe.og .pi{background:rgba(244,114,182,.14)}.pe.re .pi{background:rgba(139,92,246,.14)}.pe.gv .pi{background:rgba(245,158,11,.14)}
+.pn2{font-size:13px;font-weight:500}
+.pb{font-family:var(--mn);font-size:10px;text-transform:uppercase;color:var(--d);letter-spacing:.08em}
+.pb.gv{color:var(--a)}.pb.og{color:var(--pk)}.pb.re{color:var(--v)}.pb.rz{color:var(--c)}
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pc{background:var(--p);border:1px solid var(--l);border-radius:18px;overflow:hidden;transition:.15s;cursor:pointer}
+.pc:hover{border-color:var(--lh);transform:translateY(-2px)}
+.pv{height:120px;position:relative;overflow:hidden;border-bottom:1px solid var(--l)}
+.pv svg{width:100%;height:100%;display:block}
+.pb3{padding:18px 20px}
+.pl2{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.pl2 .dt{width:8px;height:8px;border-radius:50%}
+.pl2 .tx{font-family:var(--mn);font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--m)}
+.pc h3{font-family:var(--df);font-weight:600;font-size:19px;letter-spacing:-.01em;margin-bottom:8px}
+.pc p{color:var(--m);font-size:13px}
+.ps{display:flex;gap:20px;margin-top:14px;padding-top:14px;border-top:1px dashed var(--l)}
+.pst{font-family:var(--mn);font-size:11px;color:var(--d);display:flex;flex-direction:column;gap:3px}
+.pst strong{font-family:var(--df);font-size:18px;color:var(--t);font-weight:700}
+.ag{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.ac{padding:20px;background:var(--p);border:1px solid var(--l);border-radius:16px;display:flex;flex-direction:column;gap:12px;transition:.15s}
+.ac:hover{border-color:var(--lh);transform:translateY(-2px)}
+.as{display:inline-flex;align-items:center;gap:6px;font-family:var(--mn);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--m);padding:4px 9px;border-radius:999px;align-self:flex-start}
+.s-a{background:rgba(34,197,94,.12);color:#a6f2bb}.s-c{background:rgba(245,158,11,.12);color:#fbd38d}.s-p{background:rgba(99,215,242,.12);color:#aaeefa}
+.ac h3{font-family:var(--df);font-weight:600;font-size:18px;line-height:1.2;letter-spacing:-.01em}
+.ac p{color:var(--m);font-size:13px}
+.am{display:flex;flex-direction:column;gap:6px;font-family:var(--mn);font-size:11px;color:var(--d)}
+.am .rw{display:flex;justify-content:space-between}
+.am .rw strong{color:var(--m);font-weight:500}
+.ap2{display:flex;align-items:center;gap:8px;padding-top:12px;border-top:1px dashed var(--l)}
+.sk{display:flex}
+.sk .av{margin-left:-10px;border:2px solid var(--bg2)}
+.sk .av:first-child{margin-left:0}
+.sc2{font-family:var(--mn);font-size:11px;color:var(--m)}
+.jb{margin-top:auto;padding:10px 14px;border:1px solid var(--l);background:var(--ph);border-radius:10px;font-size:13px;font-weight:500;transition:.15s}
+.jb:hover{background:var(--t);color:var(--bg);border-color:var(--t)}
+.jb.pm{background:linear-gradient(135deg,var(--c),#89e4f5);color:var(--bg);font-weight:600;border-color:transparent}
+.jb.pm:hover{filter:brightness(1.05)}
+.mt-stages{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-bottom:24px}
+.stg{padding:14px 12px;background:var(--p);border:1px solid var(--l);border-radius:12px;cursor:pointer;transition:.2s;position:relative}
+.stg:hover{border-color:var(--lh);transform:translateY(-2px)}
+.stg.on{background:linear-gradient(135deg,rgba(99,215,242,.12),rgba(139,92,246,.08));border-color:var(--c)}
+.stg .num{font-family:var(--mn);font-size:10px;color:var(--d);margin-bottom:6px;letter-spacing:.1em}
+.stg .nm{font-family:var(--df);font-weight:600;font-size:14px;line-height:1.2;letter-spacing:-.01em;margin-bottom:6px}
+.stg .ct{font-family:var(--mn);font-size:11px;color:var(--m)}
+.stg.stalled{background:linear-gradient(135deg,rgba(239,68,68,.08),transparent);border-color:rgba(239,68,68,.3)}
+.stg.stalled .ct{color:#fca5a5}
+.fl{display:flex;flex-direction:column;gap:14px}
+.flow{padding:18px;background:var(--p);border:1px solid var(--l);border-radius:16px;display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;cursor:pointer;transition:.15s}
+.flow:hover{border-color:var(--lh);transform:translateY(-1px)}
+.flow.stk{border-color:rgba(239,68,68,.3);background:linear-gradient(135deg,rgba(239,68,68,.06),transparent)}
+.flw-stage{display:flex;align-items:center;gap:8px;flex-direction:column}
+.flw-num{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-family:var(--mn);font-size:11px;font-weight:700;background:linear-gradient(135deg,rgba(99,215,242,.18),rgba(139,92,246,.18));color:var(--c)}
+.flow.stk .flw-num{background:rgba(239,68,68,.14);color:#fca5a5}
+.flw-body h3{font-family:var(--df);font-weight:600;font-size:16px;letter-spacing:-.01em;margin-bottom:4px}
+.flw-body p{color:var(--m);font-size:13px}
+.flw-body .meta{font-family:var(--mn);font-size:11px;color:var(--d);margin-top:6px;display:flex;gap:14px;flex-wrap:wrap}
+.flw-body .meta strong{color:var(--m)}
+.flw-bar{display:flex;flex-direction:column;align-items:flex-end;gap:6px;min-width:100px}
+.flw-bar .lab{font-family:var(--mn);font-size:10px;color:var(--d);text-transform:uppercase;letter-spacing:.08em}
+.flw-bar .pg-bar{width:100px;height:5px;background:var(--ph);border-radius:99px;overflow:hidden}
+.flw-bar .pg-fl{height:100%;background:linear-gradient(90deg,var(--c),var(--v));border-radius:99px}
+.flow.stk .flw-bar .pg-fl{background:var(--r)}
+.ml{display:grid;grid-template-columns:1fr 320px;gap:18px}
+.mc{height:540px;position:relative;overflow:hidden;border-radius:18px;background:radial-gradient(circle at 30% 25%,rgba(99,215,242,.12),transparent 28%),radial-gradient(circle at 70% 65%,rgba(139,92,246,.1),transparent 28%),rgba(255,255,255,.02);border:1px solid var(--l)}
+.mc::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.mc svg{position:absolute;inset:0;width:100%;height:100%}
+.mp{position:absolute;width:16px;height:16px;border-radius:50%;transform:translate(-50%,-50%);cursor:pointer;z-index:5;animation:pp 2.5s infinite}
+.mp::after{content:'';position:absolute;inset:-6px;border:2px solid currentColor;border-radius:50%;opacity:0;animation:re 2.5s infinite}
+.mp.hi{background:var(--r);color:var(--r)}.mp.md{background:var(--a);color:var(--a)}.mp.lo{background:var(--g);color:var(--g)}
+@keyframes pp{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.15)}}
+@keyframes re{0%{opacity:.7;transform:scale(1)}100%{opacity:0;transform:scale(2.2)}}
+.ms{display:flex;flex-direction:column;gap:14px}
+.sp{padding:18px;background:linear-gradient(135deg,rgba(99,215,242,.06),rgba(139,92,246,.06));border:1px solid var(--l);border-radius:14px;margin:16px}
+.sp .lb2{font-family:var(--mn);font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--c);margin-bottom:8px}
+.sp h3{font-family:var(--df);font-weight:600;font-size:20px;letter-spacing:-.01em;margin-bottom:8px}
+.sp p{color:var(--m);font-size:13px;line-height:1.55}
+.sx{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.sxi{padding:10px 12px;background:rgba(7,17,31,.5);border-radius:10px}
+.sxi .v{font-family:var(--df);font-weight:700;font-size:20px}
+.sxi .l{font-family:var(--mn);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--d)}
+.ph2{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--l)}
+.ph2 h3{font-family:var(--df);font-weight:600;font-size:17px}
+.ph2 .hm2{font-family:var(--mn);font-size:11px;color:var(--d)}
+.rv-tabs{display:flex;gap:4px;margin-bottom:18px;padding:4px;background:var(--p);border:1px solid var(--l);border-radius:12px;width:fit-content;flex-wrap:wrap}
+.rv-tab{padding:8px 14px;border-radius:8px;font-size:13px;font-weight:500;color:var(--m);transition:.15s;display:flex;align-items:center;gap:8px}
+.rv-tab:hover{color:var(--t)}
+.rv-tab.on{background:var(--ph);color:var(--t)}
+.rv-tab .badge{font-family:var(--mn);font-size:10px;padding:2px 6px;border-radius:99px;background:rgba(99,215,242,.15);color:var(--c)}
+.rv-tab.alert .badge{background:rgba(239,68,68,.15);color:#fca5a5}
+.rv-pane{display:none}
+.rv-pane.on{display:block;animation:fd .25s ease}
+.vl{display:grid;grid-template-columns:1fr 340px;gap:18px}
+.vs{display:flex;flex-direction:column;gap:14px}
+.vc{padding:20px;background:var(--p);border:1px solid var(--l);border-radius:16px;display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center}
+.vc.flag{border-color:rgba(239,68,68,.3);background:linear-gradient(135deg,rgba(239,68,68,.05),transparent)}
+.vb{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,rgba(139,92,246,.18),rgba(99,215,242,.18));font-family:var(--mn);font-size:10px;font-weight:600;color:var(--c);text-align:center;letter-spacing:.08em;flex-shrink:0}
+.vc.flag .vb{background:rgba(239,68,68,.14);color:#fca5a5}
+.vy h3{font-family:var(--df);font-weight:600;font-size:17px;margin-bottom:4px;letter-spacing:-.01em}
+.vy p{color:var(--m);font-size:13px}
+.vy .mt2{font-family:var(--mn);font-size:11px;color:var(--d);margin-top:4px}
+.vv{display:flex;gap:8px;flex-wrap:wrap}
+.vt{padding:8px 12px;border-radius:10px;background:var(--ph);border:1px solid var(--l);font-size:12px;transition:.15s;display:flex;align-items:center;gap:6px}
+.vt:hover{border-color:var(--lh);color:var(--t)}
+.vt.ys:hover{background:rgba(34,197,94,.14);color:#a6f2bb}
+.vt.no:hover{background:rgba(239,68,68,.14);color:#fca5a5}
+.rp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rp-card{padding:20px;background:var(--p);border:1px solid var(--l);border-radius:16px;display:flex;flex-direction:column;gap:12px;transition:.15s}
+.rp-card:hover{border-color:var(--lh)}
+.rp-status{display:inline-flex;align-items:center;gap:6px;font-family:var(--mn);font-size:10px;text-transform:uppercase;letter-spacing:.1em;padding:4px 9px;border-radius:999px;align-self:flex-start;background:rgba(139,92,246,.14);color:#cfbfff}
+.rp-status.draft{background:rgba(245,158,11,.14);color:#fbd38d}
+.rp-status.pub{background:rgba(34,197,94,.14);color:#a6f2bb}
+.rp-card h3{font-family:var(--df);font-weight:600;font-size:18px;letter-spacing:-.01em}
+.rp-card .ask{color:var(--c);font-size:13px;font-style:italic}
+.rp-card p{color:var(--m);font-size:13px}
+.rp-meta{display:flex;justify-content:space-between;font-family:var(--mn);font-size:11px;color:var(--d);padding-top:10px;border-top:1px dashed var(--l)}
+.rp-actions{display:flex;gap:8px}
+/* chart card */
+.ch-card{padding:20px;background:var(--p);border:1px solid var(--l);border-radius:16px}
+.ch-card h4{font-family:var(--mn);font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--d);margin-bottom:16px}
+.ch-wrap{position:relative;height:220px}
+/* signal bar list */
+.sig-list{display:flex;flex-direction:column;gap:8px}
+.sig-row{display:grid;grid-template-columns:1fr 110px 32px;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.sig-row:last-child{border:0}
+.sig-label{font-size:13px;color:var(--m)}
+.sig-bar-w{height:5px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
+.sig-bar{height:100%;border-radius:3px}
+.sig-n{font-family:var(--mn);font-size:12px;color:var(--t);text-align:right}
+/* voice quote */
+.vq{padding:16px 18px;background:var(--p);border:1px solid var(--l);border-left:3px solid var(--c);border-radius:0 12px 12px 0;margin-bottom:10px}
+.vq.warn{border-left-color:var(--r)}
+.vq p{font-size:13px;color:#dde6fb;line-height:1.65;font-style:italic;margin-bottom:8px}
+.vq .vm{font-family:var(--mn);font-size:10px;color:var(--d);display:flex;gap:8px;flex-wrap:wrap}
+.vq .vtag{background:rgba(99,215,242,.1);color:var(--c);padding:2px 7px;border-radius:99px}
+.ts{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);padding:12px 20px;background:var(--t);color:var(--bg);border-radius:999px;font-size:13px;font-weight:500;box-shadow:0 15px 30px rgba(0,0,0,.3);opacity:0;transition:.35s cubic-bezier(.2,.68,.18,1.08);pointer-events:none;z-index:200;max-width:90vw;text-align:center}
+.ts.on{transform:translateX(-50%) translateY(0);opacity:1}
+@media(max-width:1100px){.hg,.fw,.pg,.ag,.ml,.vl,.rp-grid{grid-template-columns:1fr}.mt-stages{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:720px){nav.pr{order:3;width:100%;overflow-x:auto;flex-wrap:nowrap}nav.pr button{flex-shrink:0},.vh h1{font-size:28px}.vc,.flow{grid-template-columns:1fr}.mt-stages{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<header class="tb"><div class="tbi">
+  <div class="lg"><div class="lgm"></div><span>Civic <em>Signals</em></span></div>
+  <nav class="pr" id="nv">
+    <button class="on" data-v="h"><span class="dt"></span>The Square</button>
+    <button data-v="p"><span class="dt"></span>Patterns</button>
+    <button data-v="t"><span class="dt"></span>Tracker</button>
+    <button data-v="a"><span class="dt"></span>Actions</button>
+    <button data-v="m"><span class="dt"></span>Sync Map</button>
+    <button data-v="v"><span class="dt"></span>Researcher</button>
+  </nav>
+  <div class="tr">
+    <div class="pl"><span class="lv"></span>31 signals · June 2026</div>
+    <div class="rs"><span class="rl">You are</span><div class="rp" id="rp">
+      <button class="on" data-r="resident">👤 Resident</button>
+      <button data-r="organizer">📣 Organizer</button>
+      <button data-r="researcher">🔬 Researcher</button>
+    </div></div>
+  </div>
+</div></header>
+
+<main class="ap">
+
+<!-- ══ THE SQUARE ══ -->
+<section class="vw on" id="v-h">
+  <div class="vh">
+    <div><h1><span>The</span> Square</h1><p id="sub">What neighbors across Contra Costa County are seeing right now around housing and homelessness. Share a signal. Resonate with others. Watch patterns converge.</p></div>
+    <div class="rn">Viewing as <strong id="rl">Resident</strong> · Contra Costa Co. · June 2026</div>
+  </div>
+  <div class="hg">
+    <div class="pn hm">
+      <div class="eb">● Early warning · Federal cuts signal</div>
+      <h2>67% of signals connect to <em>federal cuts.</em></h2>
+      <p>Residents across East, West, and Central County are describing lost Medicaid, terminated housing vouchers, and slashed CalFresh — months before this will appear in official data. The network is seeing it now.</p>
+    </div>
+    <div class="sc">
+      <div class="st"><div><div class="lb">Signals collected</div><div class="tr2">↑ June 2026 pilot dataset</div></div><div class="vl2">31</div></div>
+      <div class="st"><div><div class="lb">System failures documented</div><div class="tr2 warn">↑ 5x more failures than successes</div></div><div class="vl2">20</div></div>
+      <div class="st"><div><div class="lb">Say situation much worse</div><div class="tr2 warn">vs. 6 months ago</div></div><div class="vl2">65%</div></div>
+    </div>
+  </div>
+  <div class="fw">
+    <div>
+      <div class="co">
+        <div class="cr"><div class="ca">You</div><div class="ci" onclick="showToast('Signal composer opens — voice, text, photo, or location pin.')">What are you seeing in your neighborhood today?</div></div>
+        <div class="cx">
+          <button class="ch" onclick="showToast('Attach a location pin — neighborhood level only.')">📍 Location</button>
+          <button class="ch" onclick="showToast('Voice notes available in English and Spanish.')">🎙️ Voice</button>
+          <button class="ch" onclick="showToast('Photos stay private until you approve sharing.')">📷 Photo</button>
+          <button class="ch" onclick="showToast('Tag your signal so it can sync with others.')">🏷️ Tag</button>
+          <button class="ch sd" onclick="showToast('Signal shared. Thank you, neighbor. ✦')">Share signal</button>
+        </div>
+      </div>
+      <div class="ss" id="fd"></div>
+    </div>
+    <aside class="wd">
+      <div class="wg"><h4>Converging <em>now</em></h4><div id="cg"></div></div>
+      <div class="wg"><h4>Who's <em>listening</em></h4><div id="prl"></div></div>
+    </aside>
+  </div>
+</section>
+
+<!-- ══ PATTERNS ══ -->
+<section class="vw" id="v-p">
+  <div class="vh">
+    <div><h1><span>Patterns</span> the community is naming</h1><p>When enough signals align across neighbors, the network surfaces them as patterns. Communities decide what rises. AI assists — it doesn't decide.</p></div>
+    <div class="rn">Patterns are <strong>community-owned</strong></div>
+  </div>
+  <div class="pg" id="pat"></div>
+  <div style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:18px">
+    <div class="ch-card">
+      <h4>What people are experiencing</h4>
+      <div class="sig-list">
+        <div class="sig-row"><span class="sig-label">Can't afford rent</span><div class="sig-bar-w"><div class="sig-bar" style="width:100%;background:var(--pk)"></div></div><span class="sig-n">12</span></div>
+        <div class="sig-row"><span class="sig-label">Seeing more in neighborhood</span><div class="sig-bar-w"><div class="sig-bar" style="width:50%;background:var(--c)"></div></div><span class="sig-n">6</span></div>
+        <div class="sig-row"><span class="sig-label">Staying somewhere temporary</span><div class="sig-bar-w"><div class="sig-bar" style="width:42%;background:var(--c)"></div></div><span class="sig-n">5</span></div>
+        <div class="sig-row"><span class="sig-label">Lost housing voucher</span><div class="sig-bar-w"><div class="sig-bar" style="width:33%;background:var(--v)"></div></div><span class="sig-n">4</span></div>
+        <div class="sig-row"><span class="sig-label">Lost Medicaid / Medi-Cal</span><div class="sig-bar-w"><div class="sig-bar" style="width:33%;background:var(--v)"></div></div><span class="sig-n">4</span></div>
+        <div class="sig-row"><span class="sig-label">Living outside or in vehicle</span><div class="sig-bar-w"><div class="sig-bar" style="width:33%;background:var(--r)"></div></div><span class="sig-n">4</span></div>
+      </div>
+    </div>
+    <div class="ch-card">
+      <h4>Federal cuts connection · 31 signals</h4>
+      <div class="ch-wrap"><canvas id="fedChart"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TRACKER ══ -->
+<section class="vw" id="v-t">
+  <div class="vh">
+    <div><h1><span>Mitigation</span> Tracker</h1><p>Where every pattern is in the mitigation process — including where it stalled. Naming the stuck places is part of civic intelligence.</p></div>
+    <div class="rn">Tap a stage to filter · <strong>2 stalled</strong></div>
+  </div>
+  <div class="mt-stages" id="stages"></div>
+  <div class="fl" id="flow"></div>
+</section>
+
+<!-- ══ ACTIONS ══ -->
+<section class="vw" id="v-a">
+  <div class="vh">
+    <div><h1><span>Actions</span> the community is organizing</h1><p>Signals become coordinated action. Any neighbor can convene. Orgs amplify. The network syncs people who want to show up.</p></div>
+    <div class="rn">Any resident can <strong>call an action</strong></div>
+  </div>
+  <div class="ag" id="act"></div>
+</section>
+
+<!-- ══ SYNC MAP ══ -->
+<section class="vw" id="v-m">
+  <div class="vh">
+    <div><h1><span>Sync</span> Map</h1><p>Where the network is converging across Contra Costa County. Click a hotspot to see what neighbors in that area are seeing.</p></div>
+    <div class="rn">Updated <strong>live</strong> · 31 signals · June 2026</div>
+  </div>
+  <div class="ml">
+    <div class="mc" id="mc">
+      <svg viewBox="0 0 800 540" preserveAspectRatio="none">
+        <path d="M146,80 L220,58 L305,74 L372,50 L470,70 L594,112 L642,192 L618,280 L664,338 L614,426 L506,445 L416,402 L315,432 L218,390 L168,316 L118,252 L132,168 Z" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.18)" stroke-width="2"/>
+        <path d="M205,142 L280,156 L336,124 L402,150 L490,143 L568,185" stroke="rgba(99,215,242,.28)" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+        <path d="M248,312 L340,266 L420,293 L520,252 L584,279" stroke="rgba(139,92,246,.24)" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+        <text x="580" y="175" fill="rgba(255,255,255,.25)" font-size="11" font-family="monospace">EAST COUNTY</text>
+        <text x="195" y="278" fill="rgba(255,255,255,.25)" font-size="11" font-family="monospace">WEST COUNTY</text>
+        <text x="335" y="200" fill="rgba(255,255,255,.25)" font-size="11" font-family="monospace">CENTRAL</text>
+      </svg>
+    </div>
+    <div class="ms">
+      <div class="pn" style="padding:0">
+        <div class="ph2"><h3>Hotspot details</h3><span class="hm2">Click a pin →</span></div>
+        <div class="sp" id="sel">
+          <div class="lb2">● Select a hotspot on the map</div>
+          <h3>What's the network seeing?</h3>
+          <p>Tap any pulsing pin to open the thread of signals from that place.</p>
+        </div>
+      </div>
+      <div class="wg"><h4>Legend &amp; <em>meaning</em></h4>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:13px">
+          <div style="display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:50%;background:var(--r)"></span><div><strong>Converging fast</strong> — needs attention</div></div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:50%;background:var(--a)"></span><div><strong>Syncing</strong> — signals aligning</div></div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:50%;background:var(--g)"></span><div><strong>Early</strong> — first signals appearing</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ RESEARCHER ══ -->
+<section class="vw" id="v-v">
+  <div class="vh">
+    <div><h1><span>Researcher</span> workspace</h1><p>Lived-experience researchers don't just validate — they catch manipulation, add the context AI misses, run community-defined research, and turn signals into policy-ready documents.</p></div>
+    <div class="rn"><strong>You</strong> · Contra Costa County · June 2026</div>
+  </div>
+  <div class="rv-tabs" id="rvt">
+    <button class="rv-tab on" data-p="vq">Validation queue <span class="badge">4</span></button>
+    <button class="rv-tab alert" data-p="mf">Manipulation flags <span class="badge">1</span></button>
+    <button class="rv-tab" data-p="rp">Research projects <span class="badge">3</span></button>
+    <button class="rv-tab" data-p="co">Cohort &amp; how it works</button>
+  </div>
+  <div class="rv-pane on" id="p-vq"><div class="vs" id="vld"></div></div>
+  <div class="rv-pane" id="p-mf"><div class="vs" id="mfq"></div></div>
+  <div class="rv-pane" id="p-rp"><div class="rp-grid" id="rpg"></div></div>
+  <div class="rv-pane" id="p-co">
+    <div class="vl">
+      <div class="wg"><h4>What researchers <em>do</em></h4>
+        <p style="font-size:13px;color:var(--m);line-height:1.65">Community members with lived experience who: <strong style="color:var(--t)">validate signals</strong>; <strong style="color:var(--t)">adjust or remove</strong> signals from bots and coordinated campaigns; <strong style="color:var(--t)">add context</strong> AI often misses — cultural, linguistic, historical; <strong style="color:var(--t)">conduct community-defined research</strong>; and <strong style="color:var(--t)">prepare policy-ready documents</strong> for county decision-makers.</p>
+        <p style="font-size:12px;color:var(--d);margin-top:12px">Government peers can <strong style="color:var(--m)">see</strong> but not validate. Communities own what is true about themselves.</p>
+        <div style="margin-top:16px">
+          <div class="vq"><p>"Got a 3-day notice in Antioch. Called 211 — two numbers disconnected, one voicemail full. The system recorded a completed referral. I got nothing."</p><div class="vm"><span class="vtag">East County</span><span>June 2026 · Navigator-to-cliff failure</span></div></div>
+          <div class="vq warn"><p>"I run a mutual aid network in Richmond. Emergency rent requests are up 60% since January. People are falling through every gap at once."</p><div class="vm"><span class="vtag">West County</span><span>June 2026 · System capacity</span></div></div>
+          <div class="vq"><p>"Lost my voucher after a paperwork error. The intake process requires a phone and permanent address. Catch-22."</p><div class="vm"><span class="vtag">East County</span><span>June 2026 · Intake barrier</span></div></div>
+        </div>
+      </div>
+      <aside class="wd"><div class="wg"><h4>Researcher <em>cohort</em></h4><div id="coh"></div></div></aside>
+    </div>
+  </div>
+</section>
+
+</main>
+<div class="ts" id="toast">Saved ✦</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────
+const signals=[
+{av:'a1',w:'East County Resident',h:'@antioch-neighbor',wr:'Antioch · June 1',t:'tg-h',tl:'Housing',b:'Got referred to a rental assistance program but they said funding ran out in March. Called back every week. Nothing.',r:18,e:7,c:12,s:1,f:1},
+{av:'a4',w:'West County Resident',h:'@richmond-mom',wr:'Richmond · June 1',t:'tg-m',tl:'Medicaid',b:'My doctor dropped me because my Medi-Cal got terminated. I\'ve been on it for six years. Nobody can explain why.',r:31,e:11,c:8,s:1},
+{av:'a2',w:'Central County Observer',h:'@concord-pantry',wr:'Concord · June 1',t:'tg-h',tl:'Housing',b:'I run a food pantry. In the last two months the number of people asking about housing has doubled. Many lost CalFresh and now can\'t make rent.',r:44,e:14,c:6,s:1,f:1},
+{av:'a3',w:'East County Teacher',h:'@oakley-school',wr:'Oakley · June 4',t:'tg-h',tl:'Housing',b:'Three of my students have families doubled up or living in motels this year. Last year it was one. Parents aren\'t asking for help — immigration fears.',r:38,e:16,c:9,s:1},
+{av:'a5',w:'Bay Point Healthcare',h:'@baypoint-clinic',wr:'Bay Point · June 9',t:'tg-m',tl:'Medicaid',b:'In three months I\'ve had a dozen patients lose Medi-Cal. Two were hospitalized for conditions that could have been managed with consistent care.',r:52,e:18,c:14,s:1,f:1},
+{av:'a6',w:'Richmond Mutual Aid',h:'@richmond-mutual',wr:'Richmond · June 10',t:'tg-h',tl:'Housing',b:'Emergency rent requests up 60% since January. We\'re a volunteer org — we can\'t keep up. People are falling through every gap at once.',r:67,e:22,c:31,s:1,f:1}
+];
+
+const converge=[
+['H','Federal cuts → housing loss','21 signals · 3 sub-regions · 10 days'],
+['H','Navigator-to-cliff failures','20 failures · 5 specific failure types'],
+['M','Voucher terminations spreading','6 signals · HACCC + landlord errors'],
+['R','Trust collapse — people stopped trying','5 signals · "I don\'t call anymore"']
+];
+
+const peers=[
+['rz','👤','Neighbors & residents','31 signals submitted'],
+['og','📣','Community orgs & coalitions','Mutual aid, food pantries, faith orgs'],
+['re','🔬','Lived-experience researchers','Active · LELI framework'],
+['gv','🏛️','County partners (read-only)','H3, EHSD, supervisors']
+];
+
+const patterns=[
+{col:'#f472b6',lab:'Housing · Converging fast',ti:'Federal cuts pushing people to the edge',desc:'67% of signals connect housing instability to federal changes — Medicaid, SNAP, or voucher loss. This is showing up months before eviction filings will reflect it.',s:['21','67%','3'],sl:['signals','connect to fed cuts','sub-regions'],pt:'M0,100 L40,92 L80,84 L120,75 L160,62 L200,50 L240,38 L280,26 L320,16 L360,10 L400,6'},
+{col:'#ef4444',lab:'System failure · Critical',ti:'The navigator-to-cliff problem is real',desc:'For every person who got help, 5 tried and were failed. Waitlists longer than crisis windows. Phone lines disconnected. Shelters with rules that exclude families.',s:['20','4','5'],sl:['system failures','got real help','failure types'],pt:'M0,95 L40,88 L80,85 L120,80 L160,76 L200,70 L240,60 L280,50 L320,40 L360,30 L400,22'},
+{col:'#8b5cf6',lab:'Trust · Warning',ti:'Community trust in the system is collapsing',desc:'5 signals from people who stopped trying. "I\'ve seen what happens when others try." "I don\'t trust the system anymore." These people won\'t show in PIT counts.',s:['5','0%','earned'],sl:['stopped trying','service contacts','distrust is'],pt:'M0,80 L40,78 L80,76 L120,72 L160,70 L200,66 L240,60 L280,55 L320,52 L360,48 L400,44'},
+{col:'#63d7f2',lab:'Geography · East County surge',ti:'East County carrying the highest signal load',desc:'15 of 31 signals — nearly half — come from East County. Antioch and Pittsburg appear most frequently. Signal intensity is highest where services are thinnest.',s:['15','48%','2'],sl:['signals','from East County','months of data'],pt:'M0,85 L40,80 L80,72 L120,65 L160,55 L200,48 L240,40 L280,34 L320,28 L360,22 L400,18'}
+];
+
+const trackerStages=[
+{n:1,k:'Signaled',d:'Individual signals arriving',c:31},
+{n:2,k:'Converging',d:'Pattern forming',c:4},
+{n:3,k:'Validated',d:'Researchers confirmed',c:3},
+{n:4,k:'Claimed',d:'Org or person took it',c:2},
+{n:5,k:'In Motion',d:'Action underway',c:2},
+{n:6,k:'Response',d:'Decision-maker replied',c:0},
+{n:7,k:'Resolved',d:'Conditions shifted',c:0},
+{n:8,k:'Stalled',d:'Visibly stuck',c:2,stalled:1}
+];
+
+const flows=[
+{stg:2,ti:'Federal cuts → housing loss across county',d:'67% convergence across 31 signals. East County highest intensity. Pattern ready for researcher validation.',meta:[['Signals','21'],['Coverage','3 sub-regions'],['Age','10 days']],pg:45},
+{stg:2,ti:'Navigator-to-cliff service failures',d:'5 documented failure types: funding gaps, disconnected lines, shelter rules, waitlists, intake barriers.',meta:[['Failures','20'],['Successes','4'],['Age','10 days']],pg:40},
+{stg:4,ti:'Voucher terminations — appeal support',d:'Community org in Pittsburg helping residents appeal HACCC terminations. 1 success, several pending.',meta:[['Owner','East CoCo Housing'],['Active appeals','4'],['Age','8 days']],pg:55},
+{stg:5,ti:'County H3 briefing — early warning data',d:'Signal data being prepared for presentation to county homelessness strategy team.',meta:[['Owner','Dalbert Design'],['Target','H3 leadership'],['Age','3 days']],pg:30},
+{stg:8,ti:'211 system failures in East County',d:'Phone numbers disconnected, voicemails full. 5 signals. No response from 211 program office in 10 days.',meta:[['Owner','Unassigned'],['Days stalled','10'],['Last contact','None']],pg:15,stk:1},
+{stg:8,ti:'Medi-Cal termination appeals — no pathway',d:'8 signals about Medi-Cal loss. No clear community appeal pathway identified. County H&HS not yet engaged.',meta:[['Owner','Unassigned'],['Days stalled','12'],['Last contact','None']],pg:8,stk:1}
+];
+
+const actions=[
+{st:'s-p',ss:'● Planning',ti:'Know-your-rights: lost vouchers & Medi-Cal',desc:'Community teach-in for East County residents who lost Section 8 or Medi-Cal. Legal aid + lived experience facilitators.',m:[['Target','July 2026'],['Location','Pittsburg / Antioch'],['Needs','Legal aid partner, Spanish']],av:['a1','a2','a3'],lbl:['EC','CC','TK'],cn:'Building coalition',btn:"I want to help organize",tm:'Connected to organizing team. ✦'},
+{st:'s-a',ss:'● Active',ti:'County H3 early warning briefing',desc:'Presenting the Civic Signals pilot data to the county homelessness strategy team before the next planning cycle.',m:[['Target','July H3 meeting'],['Data ready','June brief'],['Presenter','Loren Dalbert']],av:['a5','a6','a2'],lbl:['LD','CB','MP'],cn:'Brief complete · scheduling',btn:'Add my testimony',tm:'Your signal will be included in the county presentation.'},
+{st:'s-p',ss:'● Planning',ti:'211 accountability push — East County',desc:'Documenting disconnected numbers and full voicemails. Building a complaint file for the county.',m:[['Evidence','5 signals'],['Target','County OES'],['Needs','More documentation']],av:['a4','a1','a3'],lbl:['RM','JO','LP'],cn:'5 incidents documented',btn:'Submit your 211 failure',tm:'Your experience added to the file.'},
+{st:'s-c',ss:'● Convening',ti:'Mutual aid coordination — rent emergency',desc:'Connecting mutual aid networks across East and West County who are all seeing 60%+ surges in rent help requests.',m:[['Networks','3 active'],['Surge','60% since January'],['Needs','Coordination lead']],av:['a6','a5','a1'],lbl:['MA','MA','MA'],cn:'3 networks · coordinating',btn:'Join the network',tm:'Welcome. Coordination call link sent. ✦'},
+{st:'s-a',ss:'● Active',ti:'LELI Fellowship — signal analysts',desc:'Recruiting youth researchers from Rodeo, Crockett, Pacheco, Vine Hill, and Clyde to analyze civic signals as the first LELI cohort.',m:[['Start','July 2026'],['Stipend','Paid fellowship'],['Ages','18–26']],av:['a2','a3','a4'],lbl:['YR','YR','YR'],cn:'Recruiting now',btn:'Apply to the fellowship',pm:1,tm:'Application started. Someone will reach out within 48 hours. ✦'},
+{st:'s-p',ss:'● Planning',ti:'Spanish-language signal collection',desc:'The form is live in Spanish. Need community connectors in East County to share QR codes at churches, schools, and community tables.',m:[['Form','Live at civicsignals.net'],['Language','English + Spanish'],['Needs','Community distributors']],av:['a1','a4','a6'],lbl:['CD','CD','CD'],cn:'QR codes ready',btn:'Share in my community',tm:'QR code and flyer sent to your email.'}
+];
+
+const mapPins=[
+['hi',72,34,'East County — High intensity','15 signals. Antioch and Pittsburg most active. Federal cuts connection in 80% of signals.',15,'Housing + Medicaid'],
+['hi',62,42,'Pittsburg — Voucher terminations','Section 8 termination appeals. Community org helping residents fight back.',5,'Housing vouchers'],
+['md',55,48,'Bay Point — Healthcare crisis','Nurse reporting Medi-Cal losses leading to hospitalizations. Pattern emerging.',3,'Medicaid'],
+['md',46,28,'Concord — Food + rent spiral','Food pantry seeing housing requests doubled. CalFresh cuts pushing people out.',4,'Housing + Food'],
+['md',31,63,'Richmond — Mutual aid surge','60% increase in emergency rent requests since January. Volunteer networks overwhelmed.',6,'Housing'],
+['lo',42,68,'San Pablo — Early signals','First signals from West County unincorporated. Immigration fears suppressing reporting.',2,'Housing'],
+['md',78,60,'Antioch — 211 failures','5 documented cases of disconnected numbers and full voicemails. Stalled.',5,'System failure']
+];
+
+const validateQ=[
+['#SIG-3101','Federal cuts → housing loss pattern','21 signals connecting housing instability to Medicaid, SNAP, and voucher terminations. 67% convergence across 3 sub-regions.','AI pattern · 10 days · HIGH priority','✓ Confirm & escalate to county',1],
+['#SIG-3098','Navigator-to-cliff failure cluster','20 service failures documented. 5 distinct failure types. Only 4 successful connections in same period.','AI pattern · 10 days · documented','✓ Confirm'],
+['#SIG-3094','Trust collapse signals','5 people explicitly stated they stopped trying to access services. Distrust earned, not irrational.','Researcher flagged · 10 days · sensitive','✓ Confirm + add context'],
+['#SIG-3112','Medi-Cal terminations — disability cases','2 signals about children and adults with disabilities losing Medi-Cal. Medication gaps documented.','AI pattern · 8 days · urgent','✓ Fast-track',1]
+];
+
+const manipQ=[
+{id:'#FLG-201',ti:'Coordinated "system is working" counter-signals',d:'3 identical signals submitted within 20 minutes praising 211 response times — posted the same week community was documenting 211 failures. Phrase-matching suggests scripted origin.',m:'Anomaly detection · housing topic · counter-narrative pattern'}
+];
+
+const research=[
+{st:'pub',sl:'Published',ti:'June 2026 Civic Signals Brief — Housing & Homelessness',q:'Question: What are community members seeing about housing instability that official data is missing?',d:'Complete analysis of 31 signals. Federal cuts connection documented. Navigator failures mapped. Shared with county H3 team and coalition partners.',meta:[['Lead','Loren Dalbert'],['Pages','6-page brief']]},
+{st:'',sl:'Active',ti:'Navigator-to-cliff: mapping the specific failures',q:'Question: Where exactly is the system breaking down — and what would fix each break?',d:'Documenting each failure type with specific signals attached. Building a "real resource map" vs. the nominal directory — what actually has capacity right now.',meta:[['Lead','LELI Fellow TBD'],['Status','Signal collection']]},
+{st:'draft',sl:'Drafting',ti:'Medi-Cal termination impact in Contra Costa',q:'Question: How many people lost Medi-Cal in CCC since HR1, what happened to them, and what is the pathway back?',d:'Combining community signals with public enrollment data. Drafting a community memo for the Board of Supervisors.',meta:[['Lead','Researcher TBD'],['Due','August 2026']]}
+];
+
+const cohort=[['You','Contra Costa County · Signal analyst'],['Loren Dalbert','Lead researcher · Lived experience consultant'],['LELI Fellow','East County · Recruiting now'],['Community Validator','West County · Recruiting now']];
+
+// ── RENDER ──────────────────────────────────────────────────────────
+function renderSignals(){document.getElementById('fd').innerHTML=signals.map(s=>`<div class="sg${s.f?' ft':''}"><div class="sh"><div class="av ${s.av}">${s.w.split(' ').map(n=>n[0]).join('').slice(0,2)}</div><div class="sm"><div class="wh">${s.w} <span class="hn">${s.h}</span></div><div class="wr">${s.wr}</div></div><span class="tg ${s.t}">${s.tl}</span></div><div class="sb">${s.b}</div><div class="sa"><button class="ab" onclick="rz(this)">♥ <span class="cn">${s.r}</span> resonate</button><button class="ab" onclick="showToast('Echoed into your feed.')">↻ <span class="cn">${s.e}</span> echo</button><button class="ab" onclick="showToast('Threaded to pattern.')">⎇ thread</button>${s.s?`<div class="sy"><span class="sd2"></span>Syncing · ${s.c} signals</div>`:''}</div></div>`).join('')}
+
+function rz(b){b.classList.toggle('on');const c=b.querySelector('.cn');const n=+c.textContent;c.textContent=b.classList.contains('on')?n+1:n-1;if(b.classList.contains('on'))showToast('Resonated. Your neighbors see you with them.')}
+
+function renderConverge(){document.getElementById('cg').innerHTML=converge.map(c=>`<div class="cv"><div class="cs s${c[0]==='H'?'H':c[0]==='M'?'M':'R'}">${c[0]==='H'?'HIGH':c[0]==='M'?'MED':'RISE'}</div><div class="cb"><div class="ti">${c[1]}</div><div class="sb2">${c[2]}</div></div></div>`).join('');document.getElementById('prl').innerHTML=peers.map(p=>`<div class="pe ${p[0]}"><div class="pi">${p[1]}</div><div><div class="pn2">${p[2]}</div><div class="pb ${p[0]}">${p[3]}</div></div></div>`).join('')}
+
+function renderPatterns(){document.getElementById('pat').innerHTML=patterns.map((p,i)=>`<div class="pc" onclick="showToast('Pattern detail opens — full signal thread.')"><div class="pv" style="background:linear-gradient(135deg,${p.col}22,${p.col}08)"><svg viewBox="0 0 400 120" preserveAspectRatio="none"><path d="${p.pt} L400,120 L0,120 Z" fill="${p.col}" opacity=".25"/><path d="${p.pt}" stroke="${p.col}" stroke-width="2" fill="none"/></svg></div><div class="pb3"><div class="pl2"><span class="dt" style="background:${p.col};box-shadow:0 0 8px ${p.col}"></span><span class="tx">${p.lab}</span></div><h3>${p.ti}</h3><p>${p.desc}</p><div class="ps">${p.s.map((v,j)=>`<div class="pst"><strong>${v}</strong>${p.sl[j]}</div>`).join('')}</div></div></div>`).join('')}
+
+function renderActions(){document.getElementById('act').innerHTML=actions.map(a=>`<div class="ac"><span class="as ${a.st}">${a.ss}</span><h3>${a.ti}</h3><p>${a.desc}</p><div class="am">${a.m.map(r=>`<div class="rw"><span>${r[0]}</span><strong>${r[1]}</strong></div>`).join('')}</div><div class="ap2"><div class="sk">${a.av.map((c,i)=>`<div class="av ${c}">${a.lbl[i]}</div>`).join('')}</div><span class="sc2">${a.cn}</span></div><button class="jb${a.pm?' pm':''}" onclick="showToast('${a.tm}')">${a.btn}</button></div>`).join('')}
+
+function renderMap(){const mc=document.getElementById('mc');mapPins.forEach(p=>{const d=document.createElement('div');d.className='mp '+p[0];d.style.left=p[1]+'%';d.style.top=p[2]+'%';d.onclick=()=>{document.getElementById('sel').innerHTML=`<div class="lb2">● ${p[6].toUpperCase()}</div><h3>${p[3]}</h3><p>${p[4]}</p><div class="sx"><div class="sxi"><div class="v">${p[5]}</div><div class="l">signals</div></div><div class="sxi"><div class="v">${Math.round(p[5]*14)}</div><div class="l">resonating</div></div></div><button class="jb pm" style="margin-top:14px;width:100%" onclick="showToast('Subscribed to thread.')">Subscribe to thread</button>`;showToast(p[3].split('—')[0]+'opened.')};mc.appendChild(d)})}
+
+let stgFilter=0;
+function renderStages(){document.getElementById('stages').innerHTML=trackerStages.map(s=>`<div class="stg${s.stalled?' stalled':''}${stgFilter===s.n?' on':''}" onclick="filterStage(${s.n})"><div class="num">STAGE ${s.n}</div><div class="nm">${s.k}</div><div class="ct">${s.c} pattern${s.c===1?'':'s'}</div></div>`).join('');renderFlow()}
+function filterStage(n){stgFilter=stgFilter===n?0:n;renderStages()}
+function renderFlow(){const list=stgFilter?flows.filter(f=>f.stg===stgFilter):flows;document.getElementById('flow').innerHTML=list.length?list.map(f=>{const sg=trackerStages.find(s=>s.n===f.stg);return`<div class="flow${f.stk?' stk':''}" onclick="showToast('Pattern detail opens — full signal thread + mitigation history.')"><div class="flw-stage"><div class="flw-num">${f.stg}</div><div style="font-family:var(--mn);font-size:11px;color:var(--d);text-transform:uppercase;letter-spacing:.08em;text-align:center">${sg.k}</div></div><div class="flw-body"><h3>${f.ti}</h3><p>${f.d}</p><div class="meta">${f.meta.map(r=>`<span><strong>${r[0]}:</strong> ${r[1]}</span>`).join('')}</div></div><div class="flw-bar"><span class="lab">${f.stk?'Stuck':'Progress'}</span><div class="pg-bar"><div class="pg-fl" style="width:${f.pg}%"></div></div></div></div>`}).join(''):`<div class="pn" style="text-align:center;color:var(--d);padding:40px">No patterns in this stage.</div>`}
+
+function renderValidation(){document.getElementById('vld').innerHTML=validateQ.map(v=>`<div class="vc${v[5]?' flag':''}"><div class="vb">${v[0]}</div><div class="vy"><h3>${v[1]}</h3><p>${v[2]}</p><div class="mt2">${v[3]}</div></div><div class="vv"><button class="vt ys" onclick="vz('c')">${v[4]}</button>${v[5]?`<button class="vt no" onclick="vz('r')">⤫ More data needed</button>`:`<button class="vt" onclick="vz('x')">+ Add context</button>`}</div></div>`).join('');document.getElementById('coh').innerHTML=cohort.map(c=>`<div class="pe re"><div class="pi">🔬</div><div><div class="pn2">${c[0]}</div><div class="pb re">${c[1]}</div></div></div>`).join('')}
+function renderManip(){document.getElementById('mfq').innerHTML=manipQ.map(m=>`<div class="vc flag"><div class="vb">${m.id}</div><div class="vy"><h3>${m.ti}</h3><p>${m.d}</p><div class="mt2">${m.m}</div></div><div class="vv"><button class="vt no" onclick="vz('rm')">⤫ Remove signals</button><button class="vt" onclick="vz('adj')">⚙ Adjust weight</button><button class="vt ys" onclick="vz('keep')">✓ Keep — legitimate</button></div></div>`).join('')}
+function renderResearch(){document.getElementById('rpg').innerHTML=research.map(r=>`<div class="rp-card"><span class="rp-status ${r.st}">● ${r.sl}</span><h3>${r.ti}</h3><div class="ask">${r.q}</div><p>${r.d}</p><div class="rp-meta">${r.meta.map(x=>`<span><strong>${x[0]}:</strong> ${x[1]}</span>`).join('')}</div><div class="rp-actions"><button class="jb" onclick="showToast('Document opens — community keeps authorship.')">Open document</button><button class="jb pm" onclick="showToast('You are now contributing to this project.')">Contribute</button></div></div>`).join('')}
+
+function vz(k){showToast({c:'Signal confirmed. One more review and it publishes.',x:'Context panel opened — attach your lived-experience note.',r:'Flagged for more data.',rm:'Manipulation signals removed. Logged for transparency.',adj:'Signal weight adjusted. Original preserved with note.',keep:'Marked legitimate. Pattern continues to converge.'}[k])}
+
+// ── CHART ────────────────────────────────────────────────────────────
+function renderChart(){
+  new Chart(document.getElementById('fedChart'),{
+    type:'doughnut',
+    data:{labels:['Yes, directly','Probably','Not sure','Not connected'],datasets:[{data:[9,12,8,2],backgroundColor:['#ef4444','#f59e0b','#6c7a99','rgba(255,255,255,.08)'],borderWidth:0,hoverOffset:6}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{color:'#a9b7d6',font:{family:'JetBrains Mono',size:11},padding:10,boxWidth:10}},tooltip:{callbacks:{label:ctx=>` ${ctx.label}: ${ctx.raw} signals`}}}}
+  })
+}
+
+// ── NAV ──────────────────────────────────────────────────────────────
+function switchView(v){document.querySelectorAll('.vw').forEach(x=>x.classList.remove('on'));document.querySelectorAll('nav.pr button').forEach(x=>x.classList.remove('on'));document.getElementById('v-'+v).classList.add('on');document.querySelector(`nav.pr button[data-v="${v}"]`).classList.add('on');window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('nav.pr button').forEach(b=>b.onclick=()=>switchView(b.dataset.v));
+document.querySelectorAll('.rv-tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.rv-tab').forEach(x=>x.classList.remove('on'));document.querySelectorAll('.rv-pane').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.getElementById('p-'+b.dataset.p).classList.add('on')});
+
+const roleMap={resident:['Resident','What neighbors across Contra Costa County are seeing right now around housing and homelessness. Share a signal. Resonate. Watch patterns converge.'],organizer:['Organizer','Watch signals converge into actionable moments. Call the meeting. Draft the letter. Connect the networks.'],researcher:['Researcher','Validate signals. Catch manipulation. Add context AI misses. Run community research. Turn signals into policy-ready documents.']};
+document.querySelectorAll('#rp button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#rp button').forEach(x=>x.classList.remove('on'));b.classList.add('on');const r=b.dataset.r;document.getElementById('rl').textContent=roleMap[r][0];document.getElementById('sub').textContent=roleMap[r][1];showToast('Switched to '+roleMap[r][0]+' view');if(r==='organizer')setTimeout(()=>switchView('a'),300);if(r==='researcher')setTimeout(()=>switchView('v'),300)});
+
+let toastT;function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('on'),2800)}
+
+// ── INIT ─────────────────────────────────────────────────────────────
+renderSignals();renderConverge();renderPatterns();renderActions();renderMap();renderStages();renderValidation();renderManip();renderResearch();renderChart();
+</script>
+</body>
+</html>
