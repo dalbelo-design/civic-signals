@@ -12,7 +12,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 /*
-  Layout: a community-owned "smoke detector" — sticky tab bar, then six views:
+  Layout: community-owned early warning — sticky tab bar, then six views:
   overview of alarm levels → community signals → system data → equity lens → response tracker → how it works.
 
   ACCESSIBLE COLOR SYSTEM (carried over from Civic Signals v1) — Okabe-Ito / Paul Tol, color-blind safe.
@@ -27,10 +27,10 @@
   --t:#eef4ff;--m:#b0bdd6;--d:#8494b3;
   --c:#56B4E9;   /* sky blue — primary accent */
   --v:#0072B2;   /* deep blue — secondary */
-  --a:#E69F00;   /* amber — smoke */
+  --a:#E69F00;   /* amber — warning */
   --g:#009E73;   /* teal-green — clear */
-  --pk:#CC79A7;  /* rose-mauve — fire */
-  --y:#F0E442;   /* yellow — haze / focus */
+  --pk:#CC79A7;  /* rose-mauve — urgent */
+  --y:#F0E442;   /* yellow — watch / focus */
   --gt:#5de8c8;--at:#ffd77a;--pt:#e8b4d6;--ct:#a8d9f5;--yt:#f6ee8a;  /* light text tints of each */
   --df:'Fraunces',Georgia,serif;
   --bd:'Inter Tight',system-ui,sans-serif;
@@ -223,7 +223,7 @@ table.ds td:first-child{color:var(--t);font-weight:600}
   <div class="wrap tbi">
     <div class="lg"><div class="lgm" aria-hidden="true"></div>Civic Signals <em>Network</em></div>
     <nav class="pr" aria-label="Dashboard sections" role="tablist">
-      <button role="tab" id="t-sd" aria-controls="sd" aria-selected="true"><span class="dt" aria-hidden="true"></span>Smoke Detector</button>
+      <button role="tab" id="t-sd" aria-controls="sd" aria-selected="true"><span class="dt" aria-hidden="true"></span>Early Warning</button>
       <button role="tab" id="t-sq" aria-controls="sq" aria-selected="false"><span class="dt" aria-hidden="true"></span>Community Signals</button>
       <button role="tab" id="t-cw" aria-controls="cw" aria-selected="false"><span class="dt" aria-hidden="true"></span>Coverage Watch</button>
       <button role="tab" id="t-eq" aria-controls="eq" aria-selected="false"><span class="dt" aria-hidden="true"></span>Equity Lens</button>
@@ -235,30 +235,29 @@ table.ds td:first-child{color:var(--t);font-weight:600}
 
 <main class="wrap ap" id="main-content">
 
-<!-- ═══ SMOKE DETECTOR ═══ -->
+<!-- ═══ EARLY WARNING ═══ -->
 <section id="sd" class="vw" role="tabpanel" aria-labelledby="t-sd" tabindex="0">
   <div class="vh">
     <div>
-      <h1><em>Contra Costa</em> <span>Smoke Detector</span></h1>
+      <h1><em>Contra Costa</em> <span>Early Warning</span></h1>
       <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
         <span class="pill demo">⚠ Prototype — indicator values are sample data</span>
-        <span class="pill real">● Exposure counts from EHSD, Sept 2026</span>
       </div>
-      <p style="margin-top:12px">A community-owned early warning system for HR 1. It watches for smoke — overdue renewals, paperwork losses, people giving up — so we can act before people lose CalFresh and Medi-Cal they still qualify for.</p>
+      <p style="margin-top:12px">A community-owned early warning system for HR 1. It watches for warning signs — overdue renewals, paperwork losses, people giving up — so we can act before people lose CalFresh and Medi-Cal they still qualify for.</p>
     </div>
     <div class="rn"><strong>Data window:</strong> Sept 2026 &nbsp;·&nbsp; Refreshed monthly</div>
   </div>
 
   <div class="hero">
     <div class="pn hm">
-      <div class="eb">— Why a smoke detector</div>
-      <h2>A fire alarm tells you who already lost coverage. <em>A smoke detector warns you while you can still act.</em></h2>
+      <div class="eb">— Why early warning</div>
+      <h2>Official counts tell us who already lost coverage. <em>Early warning tells us while we can still act.</em></h2>
       <p>Most coverage loss under HR 1 will come from paperwork, not ineligibility. In Arkansas, more than 95% of people subject to work requirements already met them or should have been exempt. Each indicator below has thresholds set by the community, and it raises its level before losses show up in official counts.</p>
       <div class="scale" aria-label="Alarm levels">
         <div><span class="lv lv-clear"><i></i>Clear</span>Within normal range. Keep watching.</div>
-        <div><span class="lv lv-haze"><i></i>Haze</span>Drifting. Work group checks the cause.</div>
-        <div><span class="lv lv-smoke"><i></i>Smoke</span>Act now. Brief the Steering Committee.</div>
-        <div><span class="lv lv-fire"><i></i>Fire</span>People are losing help. All hands.</div>
+        <div><span class="lv lv-haze"><i></i>Watch</span>Drifting. Work group checks the cause.</div>
+        <div><span class="lv lv-smoke"><i></i>Warning</span>Act now. Brief the Steering Committee.</div>
+        <div><span class="lv lv-fire"><i></i>Urgent</span>People are losing help. All hands.</div>
       </div>
     </div>
     <div class="cd">
@@ -268,10 +267,10 @@ table.ds td:first-child{color:var(--t);font-weight:600}
         <div class="lbl">until Medi-Cal work requirements and six-month renewals begin on <b>January 1, 2027</b></div>
       </div>
       <div class="exp">
-        <div><b class="num">51,000</b><span>on CalFresh facing work rules since June 1, 2026</span></div>
-        <div><b class="num">68,000</b><span>Medi-Cal adults facing work rules from Jan 1, 2027</span></div>
-        <div><b class="num">110,000</b><span>moving to renewals every six months</span></div>
-        <div><b class="num">8,500</b><span>immigrants who lost full-scope Medi-Cal on Oct 1, 2026</span></div>
+        <div><b>Jun 2026</b><span>CalFresh work rules expanded to adults up to 64</span></div>
+        <div><b>Oct 2026</b><span>Refugees and asylees lose full-scope Medi-Cal</span></div>
+        <div><b>Jan 2027</b><span>Medi-Cal work requirements begin</span></div>
+        <div><b>Jan 2027</b><span>Medi-Cal renewals every six months</span></div>
       </div>
     </div>
   </div>
@@ -293,7 +292,7 @@ table.ds td:first-child{color:var(--t);font-weight:600}
     <div>
       <h1><em>Community</em> <span>Signals</span></h1>
       <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><span class="pill demo">⚠ Sample signals — demo data</span></div>
-      <p>Neighbors, nurses, pantry volunteers, barbers and caseworkers report what they see. Their stories are the first smoke, often months before system data moves.</p>
+      <p>Neighbors, nurses, pantry volunteers, barbers and caseworkers report what they see. Their stories are the first warning, often months before system data moves.</p>
     </div>
   </div>
   <div class="fw">
@@ -329,10 +328,10 @@ table.ds td:first-child{color:var(--t);font-weight:600}
     <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
       <div class="pn wg">
         <h4>Converging <em>patterns</em></h4>
-        <div class="cv"><span class="lv lv-smoke"><i></i>Smoke</span><div><div class="t1">No letter, no warning</div><div class="t2">People learn they lost coverage at the pharmacy or clinic, not by mail. Points to bad addresses.</div></div></div>
-        <div class="cv"><span class="lv lv-smoke"><i></i>Smoke</span><div><div class="t1">“CalFresh is ending” rumor</div><div class="t2">Self-cancellations reported at pantries in West and East County.</div></div></div>
-        <div class="cv"><span class="lv lv-haze"><i></i>Haze</span><div><div class="t1">Veterans caught off guard</div><div class="t2">Former exemption removed. Veterans not reached by outreach yet.</div></div></div>
-        <div class="cv"><span class="lv lv-fire"><i></i>Fire</span><div><div class="t1">Refugee families going silent</div><div class="t2">Fear after the 10-day status rule. Families avoiding every official contact.</div></div></div>
+        <div class="cv"><span class="lv lv-smoke"><i></i>Warning</span><div><div class="t1">No letter, no warning</div><div class="t2">People learn they lost coverage at the pharmacy or clinic, not by mail. Points to bad addresses.</div></div></div>
+        <div class="cv"><span class="lv lv-smoke"><i></i>Warning</span><div><div class="t1">“CalFresh is ending” rumor</div><div class="t2">Self-cancellations reported at pantries in West and East County.</div></div></div>
+        <div class="cv"><span class="lv lv-haze"><i></i>Watch</span><div><div class="t1">Veterans caught off guard</div><div class="t2">Former exemption removed. Veterans not reached by outreach yet.</div></div></div>
+        <div class="cv"><span class="lv lv-fire"><i></i>Urgent</span><div><div class="t1">Refugee families going silent</div><div class="t2">Fear after the 10-day status rule. Families avoiding every official contact.</div></div></div>
       </div>
       <div class="pn wg">
         <h4>Where people <em>get stuck</em></h4>
@@ -352,28 +351,21 @@ table.ds td:first-child{color:var(--t);font-weight:600}
   <div class="vh">
     <div>
       <h1><em>Coverage</em> <span>Watch</span></h1>
-      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><span class="pill real">● Exposure from EHSD</span><span class="pill demo">⚠ Monthly trends are sample data</span></div>
+      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><span class="pill demo">⚠ Sample data</span></div>
       <p>System data from the county and health plans, shown as aggregate counts only. The question every chart answers: did people lose help because they didn't qualify, or because of paperwork?</p>
     </div>
-  </div>
-  <div class="kp">
-    <div><b class="num">51,000</b><span>CalFresh adults under work rules</span><em>Since Jun 1, 2026</em></div>
-    <div><b class="num">68,000</b><span>Medi-Cal adults under work rules</span><em>From Jan 1, 2027</em></div>
-    <div><b class="num">110,000</b><span>Renewing every six months</span><em>From Jan 1, 2027</em></div>
-    <div><b class="num">1,100</b><span>Immigrants who lost CalFresh</span><em>Apr 1, 2026</em></div>
-    <div><b class="num">45 → ~60</b><span>Days to process an application</span><em>Standard vs. hospital reports</em></div>
   </div>
   <div class="g2">
     <div class="pn">
       <h3 class="ht">Automatic renewal rate</h3>
       <p class="sub">Share of Medi-Cal renewals completed from data the county already has, with no form. The community threshold is 65%.</p>
-      <div class="legend"><span><i class="ln" style="background:var(--c)"></i>Automatic renewal rate</span><span><i class="dash"></i>Smoke threshold (65%)</span></div>
+      <div class="legend"><span><i class="ln" style="background:var(--c)"></i>Automatic renewal rate</span><span><i class="dash"></i>Warning threshold (65%)</span></div>
       <div class="chartbox"><canvas id="ch_auto" role="img" aria-label="Line chart: automatic renewal rate falls from 71% in April to 58% in September 2026, below the 65% threshold since July. Sample data."></canvas></div>
       <p class="src">Sample data. Source when live: EHSD monthly renewal report.</p>
     </div>
     <div class="pn">
       <h3 class="ht">Why people lost Medi-Cal</h3>
-      <p class="sub">Monthly discontinuances split by reason. Paperwork losses are the smoke; ineligible is the fire we cannot prevent.</p>
+      <p class="sub">Monthly discontinuances split by reason. Paperwork losses can be prevented; most ineligible losses cannot.</p>
       <div class="legend"><span><i style="background:var(--a)"></i>Paperwork / no response</span><span><i style="background:var(--c)"></i>Found ineligible</span></div>
       <div class="chartbox"><canvas id="ch_reason" role="img" aria-label="Stacked bars, April to September 2026: paperwork losses grow from 620 to 1,140 a month while ineligible losses stay between 380 and 460. Sample data."></canvas></div>
       <p class="src">Sample data. Source when live: CalSAWS discontinuance reason codes via EHSD.</p>
@@ -394,7 +386,7 @@ table.ds td:first-child{color:var(--t);font-weight:600}
     <div>
       <h1><em>Equity</em> <span>Lens</span></h1>
       <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><span class="pill demo">⚠ Sample data</span></div>
-      <p>The same readings, broken out by place, language and age, so we can see who is being hit first. Darker cells mean more smoke.</p>
+      <p>The same readings, broken out by place, language and age, so we can see who is being hit first. Darker cells mean more warning signs.</p>
     </div>
   </div>
   <div class="pn">
@@ -420,7 +412,7 @@ table.ds td:first-child{color:var(--t);font-weight:600}
     <p class="src">“Back on in 90 days”: a lower number is worse, so it is shaded by how far it falls below the county average. Groups under 11 people are never shown.</p>
   </div>
   <div class="g2 mt">
-    <div class="nt">East County and families who speak languages other than English or Spanish show the most smoke. Both point to Move 2 (trusted messengers in their own language) and Move 7 (address checks).</div>
+    <div class="nt">East County and families who speak languages other than English or Spanish show the most warning signs. Both point to Move 2 (trusted messengers in their own language) and Move 7 (address checks).</div>
     <div class="nt" style="border-left-color:var(--a)"><b>Protect what this lens can see.</b> A proposed federal rule would stop the census from collecting race and ethnicity data. Public comments are due November 2, 2026.</div>
   </div>
 </section>
@@ -431,7 +423,7 @@ table.ds td:first-child{color:var(--t);font-weight:600}
     <div>
       <h1><em>Ten</em> <span>Moves</span></h1>
       <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><span class="pill demo">⚠ Status is illustrative</span></div>
-      <p>When an indicator shows smoke, these are the responses. Each move is tied to the readings it should bring down.</p>
+      <p>When an indicator reaches Warning, these are the responses. Each move is tied to the readings it should bring down.</p>
     </div>
   </div>
   <div class="g2">
@@ -455,7 +447,7 @@ table.ds td:first-child{color:var(--t);font-weight:600}
         <h3 class="ht">Renewal Days</h3>
         <p class="sub">All ten moves in one place: groceries, haircuts with a coverage check, renewals on the spot, address updates and peer navigators.</p>
         <div class="ts">
-          <div class="ti"><div class="tn" style="background:rgba(230,159,0,.15);color:var(--at)">AN</div><div class="td"><div class="tt">Antioch · [Park, date TBD]</div><div class="ts2">Proposed first site. East County shows the most smoke.</div></div><span class="tc s-prop">Planning</span></div>
+          <div class="ti"><div class="tn" style="background:rgba(230,159,0,.15);color:var(--at)">AN</div><div class="td"><div class="tt">Antioch · [Park, date TBD]</div><div class="ts2">Proposed first site. East County shows the most warning signs.</div></div><span class="tc s-prop">Planning</span></div>
           <div class="ti"><div class="tn" style="background:rgba(230,159,0,.15);color:var(--at)">RI</div><div class="td"><div class="tt">Richmond · [Site, date TBD]</div><div class="ts2">West County follow-up.</div></div><span class="tc s-prop">Idea</span></div>
         </div>
       </div>
@@ -479,8 +471,8 @@ table.ds td:first-child{color:var(--t);font-weight:600}
   <div class="flow">
     <div><div class="stp">1 · Gather</div><h4>Signals come in</h4><ul><li>Signal form in English and Spanish</li><li>Text message and QR codes at pantries, clinics, barbershops</li><li>211 referral follow-ups</li><li>Monthly county and health plan counts</li></ul></div>
     <div><div class="stp">2 · Check</div><h4>Community researchers</h4><ul><li>Paid researchers with lived experience review every signal</li><li>Remove names and details that identify anyone</li><li>AI helps group signals; people confirm each pattern</li></ul></div>
-    <div><div class="stp">3 · Detect</div><h4>Readings vs. thresholds</h4><ul><li>Eight indicators, refreshed monthly</li><li>Thresholds set and changed by the Steering Committee</li><li>Levels: clear, haze, smoke, fire</li></ul></div>
-    <div><div class="stp">4 · Act</div><h4>Alerts and the dashboard</h4><ul><li>Smoke or fire alerts to work group leads by email and text</li><li>Public dashboard on civicsignals.net</li><li>Monthly one-page brief for BRIDGE</li></ul></div>
+    <div><div class="stp">3 · Detect</div><h4>Readings vs. thresholds</h4><ul><li>Eight indicators, refreshed monthly</li><li>Thresholds set and changed by the Steering Committee</li><li>Levels: clear, watch, warning, urgent</li></ul></div>
+    <div><div class="stp">4 · Act</div><h4>Alerts and the dashboard</h4><ul><li>Warning and urgent alerts to work group leads by email and text</li><li>Public dashboard on civicsignals.net</li><li>Monthly one-page brief for BRIDGE</li></ul></div>
   </div>
   <div class="pn">
     <h3 class="ht">Data the dashboard needs</h3>
@@ -542,18 +534,18 @@ tabs.forEach((t,i)=>{
 
 /* ── Indicators: community-set thresholds (edit here) ──
    dir "up": higher is worse. dir "down": lower is worse.
-   haze/smoke/fire = the value where each level begins. Values are SAMPLE until data agreements are live. */
+   haze/smoke/fire = where Watch, Warning and Urgent begin. Values are SAMPLE until data agreements are live. */
 const INDICATORS=[
   {name:'Automatic renewal rate',value:58,unit:'%',dir:'down',haze:70,smoke:65,fire:55,why:'Renewals done with no form. Falling means more paperwork for people.',src:'EHSD'},
   {name:'Overdue Medi-Cal renewals',value:4200,unit:'',dir:'up',haze:2500,smoke:3500,fire:5000,why:'Packets sent but not returned past the due date.',src:'EHSD'},
   {name:'Paperwork share of losses',value:71,unit:'%',dir:'up',haze:50,smoke:60,fire:75,why:'Cut off for no response, not because they didn’t qualify.',src:'EHSD'},
   {name:'Back on within 90 days',value:34,unit:'%',dir:'down',haze:45,smoke:35,fire:25,why:'Restored after a paperwork cutoff. Low means people gave up.',src:'EHSD'},
-  {name:'Days to process an application',value:58,unit:' days',dir:'up',haze:45,smoke:55,fire:70,why:'Standard is 45. Hospitals report closer to 60.',src:'Hospitals'},
+  {name:'Days to process an application',value:58,unit:' days',dir:'up',haze:45,smoke:55,fire:70,why:'Medi-Cal applications are supposed to be decided within 45 days.',src:'EHSD'},
   {name:'CalFresh time-limit losses',value:1250,unit:'',dir:'up',haze:600,smoke:1000,fire:2000,why:'Adults cut off after three months without verified hours.',src:'EHSD'},
   {name:'Self-cancellations reported',value:23,unit:'',dir:'up',haze:5,smoke:10,fire:20,why:'People dropping help they still qualify for, often from rumors.',src:'Signals'},
   {name:'Returned mail rate',value:6,unit:'%',dir:'up',haze:5,smoke:8,fire:12,why:'Letters that never reach people. The address check lowers this.',src:'EHSD'}
 ];
-const LEVELS=['clear','haze','smoke','fire'],LABEL={clear:'Clear',haze:'Haze',smoke:'Smoke',fire:'Fire'};
+const LEVELS=['clear','haze','smoke','fire'],LABEL={clear:'Clear',haze:'Watch',smoke:'Warning',fire:'Urgent'};
 function levelOf(x){const v=x.value;if(x.dir==='up'){return v>=x.fire?'fire':v>=x.smoke?'smoke':v>=x.haze?'haze':'clear'}return v<=x.fire?'fire':v<=x.smoke?'smoke':v<=x.haze?'haze':'clear'}
 function markerPos(x){ // map value onto 4 equal bands: clear | haze | smoke | fire
   const pts=x.dir==='up'?[x.haze-(x.smoke-x.haze),x.haze,x.smoke,x.fire,x.fire+(x.fire-x.smoke)]:[x.haze+(x.haze-x.smoke),x.haze,x.smoke,x.fire,x.fire-(x.smoke-x.fire)];
@@ -568,7 +560,7 @@ INDICATORS.forEach(x=>{
   el.innerHTML=`<div class="top"><div class="nm">${x.name}</div><span class="lv lv-${lv}"><i></i>${LABEL[lv]}</span></div>
   <div class="val num">${fmt(x.value,x.unit)}</div>
   <div class="meter" role="img" aria-label="${LABEL[lv]} level"><b style="left:${Math.min(98,Math.max(2,markerPos(x)))}%"></b></div>
-  <div class="ths num"><span>${x.dir==='up'?'Smoke at '+fmt(x.smoke,x.unit):'Smoke below '+fmt(x.smoke,x.unit)}</span><span>${x.dir==='up'?'Fire at '+fmt(x.fire,x.unit):'Fire below '+fmt(x.fire,x.unit)}</span></div>
+  <div class="ths num"><span>${x.dir==='up'?'Warning at '+fmt(x.smoke,x.unit):'Warning below '+fmt(x.smoke,x.unit)}</span><span>${x.dir==='up'?'Urgent at '+fmt(x.fire,x.unit):'Urgent below '+fmt(x.fire,x.unit)}</span></div>
   <div class="why">${x.why}</div><div class="who">Source: ${x.src}</div>`;
   grid.appendChild(el);
 });
@@ -584,7 +576,7 @@ function drawCharts(){
   const grid={color:'rgba(255,255,255,.07)'},tip={backgroundColor:'#0b1728',borderColor:'rgba(255,255,255,.2)',borderWidth:1,titleColor:tk('--t'),bodyColor:tk('--m'),padding:10};
   new Chart(document.getElementById('ch_auto'),{type:'line',data:{labels:months,datasets:[
     {label:'Automatic renewal rate',data:[71,69,67,64,61,58],borderColor:tk('--c'),backgroundColor:'rgba(86,180,233,.12)',fill:true,borderWidth:2,tension:.3,pointRadius:[3,3,3,3,3,6],pointBackgroundColor:tk('--c'),pointBorderColor:tk('--bg'),pointBorderWidth:2},
-    {label:'Smoke threshold',data:[65,65,65,65,65,65],borderColor:tk('--a'),borderDash:[6,5],borderWidth:2,pointRadius:0,fill:false}]},
+    {label:'Warning threshold',data:[65,65,65,65,65,65],borderColor:tk('--a'),borderDash:[6,5],borderWidth:2,pointRadius:0,fill:false}]},
     options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{...tip,callbacks:{label:c=>`${c.dataset.label}: ${c.parsed.y}%`}}},
     scales:{y:{min:50,max:80,ticks:{callback:v=>v+'%',stepSize:10},grid,border:{display:false}},x:{grid:{display:false}}}}});
   new Chart(document.getElementById('ch_reason'),{type:'bar',data:{labels:months,datasets:[
